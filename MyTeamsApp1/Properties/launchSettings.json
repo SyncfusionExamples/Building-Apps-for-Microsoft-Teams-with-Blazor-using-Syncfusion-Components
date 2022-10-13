@@ -1,0 +1,25 @@
+{
+  "profiles": {
+    "Microsoft Teams (browser)": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      "launchUrl": "https://teams.microsoft.com/l/app/d61d60ae-4a5d-46bd-9a10-5f1a009bb615?installAppPackage=true&webjoin=true&appTenantId=77f1fe12-b049-4919-8c50-9fb41e5bb63b&login_hint=joshnalingala.u@syncfusion.com",
+      "applicationUrl": "https://localhost:44302;http://localhost:2544",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "hotReloadProfile": "aspnetcore"
+    },
+    "MyTeamsApp1": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:44302;http://localhost:2544",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "hotReloadProfile": "aspnetcore"
+    }
+  }
+}

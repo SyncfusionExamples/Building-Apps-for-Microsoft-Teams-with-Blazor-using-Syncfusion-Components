@@ -1,0 +1,73 @@
+﻿@page "/"
+@page "/tab"
+
+@using Syncfusion.Blazor.Kanban
+@using System.Collections.ObjectModel;
+@using System.ComponentModel;
+
+<div class="col-lg-12 control-section">
+    <div class="content-wrapper" id="toast-kanban-observable">
+        <div class="row"> 
+            <SfKanban KeyField="Status" DataSource="@ObservableData">
+                <KanbanColumns>
+                    @foreach (ColumnModel item in columnData)
+                    {
+                        <KanbanColumn HeaderText="@item.HeaderText" KeyField="@item.KeyField" AllowAdding="true" />
+                    }
+                </KanbanColumns>
+                <KanbanCardSettings HeaderField="Id" ContentField="Summary" />
+                <KanbanSwimlaneSettings KeyField="Assignee"></KanbanSwimlaneSettings>
+            </SfKanban>
+        </div>
+    </div>
+</div>
+
+@code {
+    public ObservableCollection<ObservableDatas> ObservableData { get; set; }
+    List<ObservableDatas> Tasks = new List<ObservableDatas>();
+
+    private List<ColumnModel> columnData = new List<ColumnModel>() {
+        new ColumnModel(){ HeaderText= "To Do", KeyField= new List<string>() { "Open" } },
+        new ColumnModel(){ HeaderText= "In Progress", KeyField= new List<string>() { "In Progress" } },
+        new ColumnModel(){ HeaderText= "Testing", KeyField= new List<string>() { "Testing" } },
+        new ColumnModel(){ HeaderText= "Done", KeyField=new List<string>() { "Close" } }
+    };
+    
+    protected override void OnInitialized()
+    {
+        Tasks = Enumerable.Range(1, 20).Select(x => new ObservableDatas()
+            {
+                Id = "Task 1000" + x,
+                Status = (new string[] { "Open", "In Progress", "Testing", "Close" })[new Random().Next(4)],
+                Summary = (new string[] { "Analyze the new requirements gathered from the customer.", "Improve application performance", "Fix the issues reported in the IE browser.", "Validate new requirements", "Test the application in the IE browser." })[new Random().Next(5)],
+                Assignee = (new string[] { "Nancy Davloio", "Andrew Fuller", "Janet Leverling", "Steven walker", "Margaret hamilt", "Michael Suyama", "Robert King" })[new Random().Next(7)],
+            }).ToList();
+        ObservableData = new ObservableCollection<ObservableDatas>(Tasks);
+    }
+    
+    public class ObservableDatas : INotifyPropertyChanged
+    {
+        public string Id { get; set; }
+        private string status { get; set; }
+        public string Status
+        {
+            get { return status; }
+            set
+            {
+                this.status = value;
+                NotifyPropertyChanged("Status");
+            }
+        }
+        public string Summary { get; set; }
+        public string Assignee { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+}
