@@ -8,9 +8,11 @@ This section explains how to  run the first Microsoft Teams application (MSTeams
 
 ## Prerequisites
 
-* Visual Studio 2022 [> 17.13 version] with the required work loads (Visula studio Installer -> Workloads -> ASP.NET and web development -> Select Microsoft Teams development tools from option check list).
+* Visual Studio 2022 [> 17.13 version] with the required work loads (Visual studio Installer -> Workloads -> ASP.NET and web development -> Select Microsoft Teams development tools from option check list).
 
-* Microsoft Team Application - Enable side loading for testing the application.
+    ![workload installation](Images/workload-install.png)
+
+* Microsoft Teams Application
 
 * Microsoft Edge or Google Chrome browser with developer tools.
 
